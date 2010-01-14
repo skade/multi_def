@@ -59,10 +59,7 @@ module MultiDef
       
     end
   end
-  
-  # Evaluates a block with clause definitions within the given DefinitionEnvironment.
-  # By default, the DefinitionEnvironment is the standard environment for the
-  # object this method is called on.
+
   def multi_def(name, &definitions)   
     env = DefinitionEnvironment.new(self, name)     
     env.instance_eval(&definitions)
