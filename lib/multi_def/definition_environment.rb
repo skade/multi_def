@@ -1,6 +1,3 @@
-require 'guards/guards'
-require 'guards/default_guards'
-
 module MultiDef
   #
   # The DefaultEnvironment provides all methods to evaluate matched
