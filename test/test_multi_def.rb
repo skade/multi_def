@@ -9,7 +9,7 @@ class Klass
   def string_string(string1, string2)
     1
   end
-  
+
   def string_fixnum(string1, number1)
     2
   end
@@ -52,14 +52,14 @@ context "A guard using repond_to" do
         1
       end
     end
-    
+
     Klass.new
   end
-  
+
   asserts("Strings are accepted") do   
     topic.respond_to_guard("String")
   end.equals(1)
-  
+
   asserts("Doubles are not") do
     topic.respond_to_guard(1.0)
   end.raises(NoMethodError)
@@ -67,23 +67,23 @@ end
 
 context "Proxy methods" do
   setup do
-    
+
     Klass.multi_def(:proxy_method) do
       match String, String, &use(:string_string)
       match String, Fixnum, &use(:string_fixnum)
     end
-    
+
     Klass.new
   end
-  
+
   asserts("String arguments yield 1") do
     topic.multi("hoge", "piyo")
   end.equals(1)
-  
+
   asserts("String and Fixnum arguments yield 2") do
     topic.multi("hoge", 1)
   end.equals(2)
-  
+
   asserts("String and Double arguments error") do
     topic.multi("hoge", 1.0)
   end.raises(NoMethodError)

@@ -13,7 +13,7 @@ class Klass
     end
     match(+{:action => String}) do
       "render_action"
-    end 
+    end
     match(+{:template => String}) do
       "render_template"
     end
@@ -24,7 +24,7 @@ class Klass
       "render_dont_care"
     end
   end
-  
+
   multi_def(:fac) do
     match(0) { 1 }
     match(->(a){a > 0}) {|n| n * fac(n-1)}
@@ -48,7 +48,7 @@ class Klass2
       "render_dont_care"
     end
   end
-  
+
   def fac(n)
     n == 0 ? 1 : (n*fac(n-1))
   end
@@ -71,13 +71,13 @@ Benchmark.bmbm do |x|
       j.hash_guard(:dont_care => Object.new)
     end
   }
-  
+
   x.report('fac straight forward') {
     n.times do
       j.fac(20)
     end
   }
-  
+
   x.report("hash_guard matcher") { 
     n.times do 
       k.hash_guard()
